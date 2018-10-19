@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: znodes-config
+data:
+  zoo.cfg: |
+    tickTime=2000
+    initLimit=10
+    syncLimit=5
+    dataDir=/data
+    dataLogDir=/datalog
+    clientPort=2181
+    maxClientCnxns=60
+    server.1=znode-1-0.znodes-service1.default.svc.cluster.local:2288:3388
+    server.2=znode-2-0.znodes-service2.default.svc.cluster.local:2288:3388
+    server.3=znode-3-0.znodes-service3.default.svc.cluster.local:2288:3388
+    server.4=znode-4-0.znodes-service4.default.svc.cluster.local:2288:3388
+    server.5=znode-5-0.znodes-service5.default.svc.cluster.local:2288:3388
