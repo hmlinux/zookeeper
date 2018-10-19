@@ -1,0 +1,244 @@
+#In k8s-node1
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: znode-1
+spec:
+  serviceName: "znodes-service1"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: znode-1
+    spec:
+      nodeName: 172.23.5.83
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: zookeeper
+        image: zookeeper:latest
+        ports:
+        - containerPort: 2181
+          name: zk-2181
+        - containerPort: 2888
+          name: zk-2888
+        - containerPort: 3888
+          name: zk-3888
+        volumeMounts:
+        - name: config
+          mountPath: /conf/zoo.cfg
+          subPath: zoo.cfg
+        - name: data-volume
+          mountPath: /data
+        - name: datalog-volume
+          mountPath: /datalog
+      volumes:
+      - name: config
+        configMap:
+          name: znodes-config
+      - name: data-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/data
+          type: Directory
+      - name: datalog-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/datalog
+          type: Directory
+      restartPolicy: Always
+---
+#In k8s-node2
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: znode-2
+spec:
+  serviceName: "znodes-service2"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: znode-2
+    spec:
+      nodeName: 172.23.5.84
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: zookeeper
+        image: zookeeper:latest
+        ports:
+        - containerPort: 2181
+          name: zk-2181
+        - containerPort: 2888
+          name: zk-2888
+        - containerPort: 3888
+          name: zk-3888
+        volumeMounts:
+        - name: config
+          mountPath: /conf/zoo.cfg
+          subPath: zoo.cfg
+        - name: data-volume
+          mountPath: /data
+        - name: datalog-volume
+          mountPath: /datalog
+      volumes:
+      - name: config
+        configMap:
+          name: znodes-config
+      - name: data-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/data
+          type: Directory
+      - name: datalog-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/datalog
+          type: Directory
+      restartPolicy: Always
+---
+#In k8s-node3
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: znode-3
+spec:
+  serviceName: "znodes-service3"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: znode-3
+    spec:
+      nodeName: 172.23.5.85
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: zookeeper
+        image: zookeeper:latest
+        ports:
+        - containerPort: 2181
+          name: zk-2181
+        - containerPort: 2888
+          name: zk-2888
+        - containerPort: 3888
+          name: zk-3888
+        volumeMounts:
+        - name: config
+          mountPath: /conf/zoo.cfg
+          subPath: zoo.cfg
+        - name: data-volume
+          mountPath: /data
+        - name: datalog-volume
+          mountPath: /datalog
+      volumes:
+      - name: config
+        configMap:
+          name: znodes-config
+      - name: data-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/data
+          type: Directory
+      - name: datalog-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/datalog
+          type: Directory
+      restartPolicy: Always
+---
+#In k8s-node4
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: znode-4
+spec:
+  serviceName: "znodes-service4"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: znode-4
+    spec:
+      nodeName: 172.23.5.86
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: zookeeper
+        image: zookeeper:latest
+        ports:
+        - containerPort: 2181
+          name: zk-2181
+        - containerPort: 2888
+          name: zk-2888
+        - containerPort: 3888
+          name: zk-3888
+        volumeMounts:
+        - name: config
+          mountPath: /conf/zoo.cfg
+          subPath: zoo.cfg
+        - name: data-volume
+          mountPath: /data
+        - name: datalog-volume
+          mountPath: /datalog
+      volumes:
+      - name: config
+        configMap:
+          name: znodes-config
+      - name: data-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/data
+          type: Directory
+      - name: datalog-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/datalog
+          type: Directory
+      restartPolicy: Always
+---
+#In k8s-node5
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: znode-5
+spec:
+  serviceName: "znodes-service5"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: znode-5
+    spec:
+      nodeName: 172.23.5.87
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: zookeeper
+        image: zookeeper:latest
+        ports:
+        - containerPort: 2181
+          name: zk-2181
+        - containerPort: 2888
+          name: zk-2888
+        - containerPort: 3888
+          name: zk-3888
+        volumeMounts:
+        - name: config
+          mountPath: /conf/zoo.cfg
+          subPath: zoo.cfg
+        - name: data-volume
+          mountPath: /data
+        - name: datalog-volume
+          mountPath: /datalog
+      volumes:
+      - name: config
+        configMap:
+          name: znodes-config
+      - name: data-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/data
+          type: Directory
+      - name: datalog-volume
+        hostPath:
+          path: /data/docker_data/zookeeper/datalog
+          type: Directory
+      restartPolicy: Always
